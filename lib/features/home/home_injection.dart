@@ -1,0 +1,14 @@
+import 'package:fashion/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:fashion/features/home/presentation/cubit/home_cubit.dart';
+import 'package:fashion/features/onBoarding/presentation/cubit/onBoarding_cubit.dart';
+import '../../locator.dart';
+
+initHomeInjection(){
+  locator.registerFactory(() => HomeCubit());
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+
+}

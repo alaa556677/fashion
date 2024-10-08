@@ -40,113 +40,110 @@ class LoginScreen extends StatelessWidget {
           }
         },
         builder:  (context, state) {
-          return Expanded(
-            child: Form(
-              key: formKey,
-              child: Center(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextWidget(
-                        text: 'Sign In',
-                        fontColor: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 34.sp,
+          return Center(
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextWidget(
+                      text: 'Sign In',
+                      fontColor: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 34.sp,
+                    ),
+                    SizedBox(height: 8.h),
+                    TextWidget(
+                      text: 'Hey! Good to see you again',
+                      fontColor: AppColors.greyColor,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    SizedBox(height: 40.h),
+                    DefaultTextFormField(
+                      hintText: 'email',
+                      controller: emailController,
+                      borderRadius: 8,
+                      validator: (value) {
+                        if(value!.isEmpty) {
+                          return "required Field";
+                        }
+                      },
+                      filledColor: Colors.white,
+                      prefix: Padding(
+                        padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
+                        child: SvgPicture.asset(AppIconsPath.emailIcon, height: 14.h, width: 18.w,),
                       ),
-                      SizedBox(height: 8.h),
-                      TextWidget(
-                        text: 'Hey! Good to see you again',
-                        fontColor: AppColors.greyColor,
+                      onChanged: (_){
+                        AuthCubit.instance.clearErrorMessage();
+                      },
+                    ),
+                    SizedBox(height: 14.h),
+                    PasswordTextFormField(
+                      hintText: 'Password',
+                      controller: passwordController,
+                      filledColor: Colors.white,
+                      borderRadius: 8,
+                      validator: (value) {
+                        if(value!.isEmpty) {
+                          return "required Field";
+                        }
+                      },
+                      prefix: Padding(
+                        padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
+                        child: SvgPicture.asset(AppIconsPath.passwordIcon, height: 18.h, width: 18.w,),
+                      ),
+                      onChanged: (_){
+                        AuthCubit.instance.clearErrorMessage();
+                      },
+                    ),
+                    SizedBox(height: 10.h),
+                    Align(
+                      alignment: AlignmentDirectional.centerEnd,
+                      child: TextWidget(
+                        text: 'Forget Password?',
+                        fontColor: AppColors.blackColor,
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      SizedBox(height: 40.h),
-                      DefaultTextFormField(
-                        hintText: 'email',
-                        controller: emailController,
-                        borderRadius: 8,
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return "required Field";
-                          }
-                        },
-                        filledColor: Colors.white,
-                        prefix: Padding(
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
-                          child: SvgPicture.asset(AppIconsPath.emailIcon, height: 14.h, width: 18.w,),
-                        ),
-                        onChanged: (_){
+                    ),
+                    SizedBox(height: 14.h),
+                    ButtonCustomWidget(
+                      text: 'Sign In',
+                      buttonHeight: 52.h,
+                      color: AppColors.blackColor,
+                      buttonColor: Colors.white,
+                      onPressed: (){
+                        if(formKey.currentState!.validate()){
                           AuthCubit.instance.clearErrorMessage();
-                        },
-                      ),
-                      SizedBox(height: 14.h),
-                      PasswordTextFormField(
-                        hintText: 'Password',
-                        controller: passwordController,
-                        filledColor: Colors.white,
-                        borderRadius: 8,
-                        validator: (value) {
-                          if(value!.isEmpty) {
-                            return "required Field";
-                          }
-                        },
-                        prefix: Padding(
-                          padding: EdgeInsetsDirectional.symmetric(horizontal: 20.w),
-                          child: SvgPicture.asset(AppIconsPath.passwordIcon, height: 18.h, width: 18.w,),
+                          AuthCubit.instance.login(email: emailController.text, password: passwordController.text);
+                        }
+                      },
+                      loadingWidget: state is LoginLoadingState
+                          ? CircularProgressIndicator(color: AppColors.tabTextSelected,strokeWidth: 2,) : null,
+                    ),
+                    SizedBox(height: 14.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextWidget(
+                            text: 'Don\'t have an account? ',
+                            fontColor: AppColors.blackColor,
+                            fontSize: 16.sp
                         ),
-                        onChanged: (_){
-                          AuthCubit.instance.clearErrorMessage();
-                        },
-                      ),
-                      SizedBox(height: 10.h),
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: TextWidget(
-                          text: 'Forget Password?',
-                          fontColor: AppColors.blackColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(height: 14.h),
-                      ButtonCustomWidget(
-                        text: 'Sign In',
-                        buttonHeight: 52.h,
-                        color: AppColors.blackColor,
-                        buttonColor: Colors.white,
-                        onPressed: (){
-                          if(formKey.currentState!.validate()){
-                            AuthCubit.instance.clearErrorMessage();
-                            AuthCubit.instance.login(email: emailController.text, password: passwordController.text);
-                          }
-                        },
-                        loadingWidget: state is LoginLoadingState
-                            ? CircularProgressIndicator(color: AppColors.tabTextSelected,strokeWidth: 2,) : null,
-                      ),
-                      SizedBox(height: 14.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextWidget(
-                              text: 'Don\'t have an account? ',
-                              fontColor: AppColors.blackColor,
+                        GestureDetector(
+                          onTap: () => navigateToNamed(route:Routes.register),
+                          child: TextWidget(
+                              text: 'Sign Up',
+                              fontColor: AppColors.tabTextSelected,
                               fontSize: 16.sp
                           ),
-                          GestureDetector(
-                            onTap: () => navigateToNamed(route:Routes.register),
-                            child: TextWidget(
-                                text: 'Sign Up',
-                                fontColor: AppColors.tabTextSelected,
-                                fontSize: 16.sp
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20.h),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.h),
+                  ],
                 ),
               ),
             ),
