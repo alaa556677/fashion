@@ -1,0 +1,34 @@
+class AppImagesPath{
+  static const String backgroundEarth = 'assets/images/background_earth.svg';
+  static const String earthImage = 'assets/images/earth_image.svg';
+  static const String appName = 'assets/images/app_name.svg';
+  static const String appName2 = 'assets/images/app_name2.svg';
+  static const String appLogo = 'assets/images/app_logo.png';
+  static const String appLogoOnly = 'assets/images/app_logo_only.png';
+  static const String handsImages = 'assets/images/hands_image.svg';
+  static const String profileImage = 'assets/images/image_profile.svg';
+  static const String productBackground = 'assets/images/product_background_image.svg';
+  static const String mobileImage = 'assets/images/mobile.png';
+  static const String seaContainer = 'assets/images/sea_container.png';
+  static const String energyCell = 'assets/images/energy_cell.png';
+  static const String childrenToy = 'assets/images/children_toy.png';
+  static const String chocolateImage = 'assets/images/chocolate.png';
+  static const String gymWheel = 'assets/images/gym_wheel.png';
+  static const String mediaOne = 'assets/images/media_one.png';
+  static const String mediaTwo = 'assets/images/media_two.png';
+  static const String mediaThree = 'assets/images/media_three.png';
+  static const String messageDevice = 'assets/images/message_device.png';
+  static const String athleticsMachine = 'assets/images/athletics_machine.png';
+  static const String footballImage = 'assets/images/football_image.png';
+  static const String boxingGloves = 'assets/images/boxing_gloves.png';
+  static const String companyField = 'assets/images/company_field.png';
+  static const String gymWalker = 'assets/images/gym_walker.png';
+  static const String certificateOne = 'assets/images/certificate_one.png';
+  static const String certificateTwo = 'assets/images/certificate_two.png';
+  static const String fatImage = 'assets/images/fat_image.png';
+  static const String footballClothes = 'assets/images/football_clothes.png';
+  static const String mineChatImage = 'assets/images/mine_chat_image.svg';
+  static const String otherChatImage = 'assets/images/other_chat_image.svg';
+  static const String topCircle = 'assets/images/top_circle.svg';
+  static const String minCircleLogin = 'assets/images/min_circle_login.svg';
+}
